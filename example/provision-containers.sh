@@ -33,8 +33,10 @@ for pve_id in 100 101; do
     pct start $pve_id
     pct exec $pve_id sh <<EOF
 set -eu
-apk update
-apk add nginx
+SSL_CERT_DIR=
+SSL_CERT_FILE=
+apk --no-check-certificate update
+apk --no-check-certificate add nginx
 adduser -D -u 1000 -g www www
 mkdir /www
 cat >/etc/nginx/nginx.conf <<'EOC'
